@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stellar Focus</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Full-screen WebGL canvas lives behind everything -->
+    <canvas id="scene"></canvas>
+
+    <!-- Study timer overlay UI -->
+    <div id="ui">
+      <h1 id="title">Stellar Focus</h1>
+      <div id="timer">00:00:00</div>
+      <div id="controls">
+        <button id="start">Start</button>
+        <button id="stop" disabled>Stop</button>
+      </div>
+      <p id="hint">Press Start to begin a focus session.</p>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
