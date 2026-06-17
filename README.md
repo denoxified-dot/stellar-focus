@@ -1,8 +1,8 @@
 # Stellar Focus
 
-A study timer that sits in front of a starfield. You hit start, it counts up while you work, and when you stop a little spiral galaxy spins up in the background. That's pretty much it.
+A study timer that takes place in the universe. Basically, you hit start, it counts up while you work, and when you stop a little spiral galaxy spins up in the background. The longer you spend studying, the bigger the galaxy is and the more of the universe you can traverse.
 
-I kept getting distracted by my normal timer apps, so I made something I'd actually want to leave open on a second monitor.
+I kept getting distracted by my normal timer apps, and with my awe for the universe I wanted to create something new and bold. It's like an app you can leave on your monitor or computer when studying, and it will all pay off once you're done.
 
 ## Running it
 
@@ -39,6 +39,7 @@ Bloom is `UnrealBloomPass` from the Three.js examples, with the threshold set so
 
 - The galaxy seed is shown in the corner when a session ends. I might let you save/reload a seed you liked.
 - Sound would be nice. Some ambient hum.
-- No persistence yet — refresh and you lose the timer.
+- No persistence yet — refresh and you lose the timer. I need to change this asap
+- I want to include a 3D aspect so you can move around. I have a strong vision- not sure how to execute it yet lol
 
-Built for fun. Take it and do whatever you want with it.
+Built for fun!
