@@ -7,14 +7,15 @@ import { getParticleTexture } from './particleTexture.js';
 
 const LAYERS = [
   // depth (z), count, size, color,        driftSpeed (world units / second)
-  { z: -120, count: 1200, size: 2.4, color: 0xffffff, speed: 6.0 },
-  { z: -320, count: 1800, size: 1.7, color: 0xbcd4ff, speed: 3.0 },
-  { z: -650, count: 2600, size: 1.2, color: 0x8aa0d8, speed: 1.2 },
+  { z: -120, count: 3200, size: 2.4, color: 0xffffff, speed: 6.0 },
+  { z: -320, count: 5200, size: 1.7, color: 0xbcd4ff, speed: 3.0 },
+  { z: -650, count: 7600, size: 1.2, color: 0x8aa0d8, speed: 1.2 },
+  { z: -1150, count: 11000, size: 0.85, color: 0x6a7fc0, speed: 0.5 }, // deep, faint haze
 ];
 
 // Half-width of the region stars occupy on each axis. Stars that drift past
 // +SPREAD wrap back around to -SPREAD so the field never empties out.
-const SPREAD = 900;
+const SPREAD = 1400;
 
 export class Starfield {
   constructor(scene) {

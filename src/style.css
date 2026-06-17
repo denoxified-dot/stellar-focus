@@ -113,3 +113,136 @@ button:disabled {
   opacity: 0.6;
   letter-spacing: 0.1em;
 }
+
+/* Discovery card shown when a session ends and a real exoplanet is revealed.
+   Two columns on wide screens (NASA photo | text), stacked on narrow ones. */
+#discovery {
+  display: flex;
+  gap: 1.4rem;
+  align-items: stretch;
+  max-width: min(54rem, 92vw);
+  max-height: 70vh;
+  margin-top: 0.5rem;
+  padding: 1.1rem 1.4rem;
+  border: 1px solid rgba(143, 211, 255, 0.25);
+  border-radius: 14px;
+  background: rgba(8, 16, 30, 0.62);
+  backdrop-filter: blur(8px);
+  text-align: left;
+  animation: discovery-in 0.6s ease both;
+  pointer-events: auto; /* allow scrolling the long caption */
+}
+
+#discovery[hidden] {
+  display: none;
+}
+
+/* NASA Astronomy Picture of the Day + its astronomer-written caption. */
+#apod {
+  flex: 0 0 42%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+#apod[hidden] {
+  display: none;
+}
+
+#apod-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 10px;
+  background: #05080f;
+  box-shadow: 0 0 28px rgba(143, 211, 255, 0.18);
+}
+
+#apod-caption {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+#apod-title {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+#apod-credit {
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  text-transform: uppercase;
+}
+
+#apod-explanation {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  opacity: 0.82;
+}
+
+#discovery-body {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (max-width: 640px) {
+  #discovery {
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+  }
+
+  #apod {
+    flex-basis: auto;
+  }
+}
+
+#discovery-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  color: var(--accent);
+}
+
+#discovery-name {
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  margin: 0.35rem 0 0.5rem;
+  text-shadow: 0 0 22px rgba(143, 211, 255, 0.45);
+}
+
+#discovery-stats {
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  margin-bottom: 0.6rem;
+}
+
+#discovery-desc {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+@keyframes discovery-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

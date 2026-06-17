@@ -3,5 +3,10 @@ dist
 *.local
 .DS_Store
 
+# Secrets — never commit your real NASA API key (.env.example is the template)
+.env
+.env.*
+!.env.example
+
 # Claude Code local settings (personal, machine-specific)
 .claude/settings.local.json

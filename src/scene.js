@@ -3,11 +3,12 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { Starfield } from './starfield.js';
-import { createGalaxy } from './galaxy.js';
+import { createBackgroundGalaxies } from './backgroundGalaxies.js';
 
 // Owns the WebGL scene: the parallax starfield, post-processing bloom, the
-// render loop, and (on demand) a procedurally generated galaxy that the
-// camera slowly drifts toward.
+// render loop, and (on demand) the procedurally rendered object the user just
+// discovered — a galaxy, nebula, star cluster, or planet — which becomes the
+// focal point the camera eases toward.
 
 export class StellarScene {
   constructor(canvas) {
@@ -26,16 +27,32 @@ export class StellarScene {
       70,
       window.innerWidth / window.innerHeight,
       0.1,
-      4000
+      7000 // deep far plane so distant galaxies and nebulae stay visible
     );
     this.camera.position.set(0, 0, 0);
 
-    // --- Starfield (three parallax layers) ---
+    // --- Deep background: a field of distant galaxies ---
+    // Built once and left static so the void has depth from the very first
+    // frame. The space between them stays true black, like real
+    // astrophotography — no colored haze.
+    this.backgroundGalaxies = createBackgroundGalaxies(this.scene);
+
+    // --- Starfield (parallax layers) ---
     this.starfield = new Starfield(this.scene);
 
-    // --- Galaxy state (created on stop) ---
-    this.galaxy = null;
+    // --- Lighting: a "sun" so discovered planets are shaded (point clouds are
+    // unlit and ignore these). A dim ambient keeps the dark side from going
+    // fully black. ---
+    const sun = new THREE.DirectionalLight(0xffffff, 2.4);
+    sun.position.set(-1, 0.55, 0.5);
+    this.scene.add(sun);
+    this.scene.add(new THREE.AmbientLight(0x223344, 0.5));
+
+    // --- Discovered-object state (created on stop) ---
+    this.discovered = null; // THREE.Object3D
+    this.discoveredSpin = 0; // radians/second about Y
     this.cameraDrift = null; // { target: Vector3, speed: number }
+    this._focusDir = new THREE.Vector3(170, 80, -560).normalize();
 
     // --- Post-processing: bloom makes bright particles glow ---
     this.composer = new EffectComposer(this.renderer);
@@ -56,48 +73,54 @@ export class StellarScene {
   }
 
   /**
-   * Spawn a procedural spiral galaxy from a random seed and begin drifting the
-   * camera toward it. Replaces any previously generated galaxy.
-   * @returns {number} the seed used, in case the caller wants to display it.
+   * Place a freshly built discovery (galaxy / nebula / cluster / planet) into
+   * the scene and ease the camera toward it. Replaces any previous discovery.
+   * @param {{ object3D: THREE.Object3D, radius: number, spin: number }} visual
    */
-  spawnGalaxy() {
-    if (this.galaxy) {
-      this.scene.remove(this.galaxy);
-      this.galaxy.geometry.dispose();
-      this.galaxy.material.dispose();
-    }
+  spawnDiscovery(visual) {
+    this._clearDiscovered();
 
-    const seed = Math.floor(Math.random() * 1e9);
-    this.galaxy = createGalaxy(seed);
+    const { object3D, radius, spin } = visual;
+    const dir = this._focusDir;
 
-    // Offset the galaxy to the upper-right and push it well into the
-    // background so it never sits behind the centered timer/buttons.
-    // Tilted for a 3/4 view.
-    this.galaxy.position.set(170, 80, -560);
-    this.galaxy.rotation.x = Math.PI * 0.18;
-    this.galaxy.rotation.z = Math.PI * 0.05;
-    this.scene.add(this.galaxy);
+    // Place the object up and to the right, deep in the background, at a
+    // distance that scales with its size so big objects don't crowd the frame.
+    const dist = THREE.MathUtils.clamp(radius * 2.4 + 360, 480, 4600);
+    object3D.position.copy(dir).multiplyScalar(dist);
+    this.scene.add(object3D);
+    this.discovered = object3D;
+    this.discoveredSpin = spin;
 
-    // Drift the camera gently toward the galaxy, but stop well short and keep
-    // it off to the side so the screen center (where the UI lives) stays clear.
+    // Ease the camera along the same line toward the object, stopping a gap
+    // short (the gap grows with the object's size) so it fills the view for a
+    // sense of scale without sitting behind the centered UI.
+    const gap = THREE.MathUtils.clamp(radius * 2.6 + 90, 140, dist * 0.72);
     this.cameraDrift = {
-      target: new THREE.Vector3(75, 35, -260),
-      speed: 0.2, // fraction of remaining distance covered per second
+      target: dir.clone().multiplyScalar(dist - gap),
+      speed: 0.25, // fraction of remaining distance covered per second
     };
-
-    return seed;
   }
 
-  /** Stop the camera drift and remove the galaxy (used when restarting). */
+  /** Stop the camera drift and remove the discovered object (on restart). */
   reset() {
     this.cameraDrift = null;
-    if (this.galaxy) {
-      this.scene.remove(this.galaxy);
-      this.galaxy.geometry.dispose();
-      this.galaxy.material.dispose();
-      this.galaxy = null;
-    }
+    this._clearDiscovered();
     this.camera.position.set(0, 0, 0);
+  }
+
+  /** Remove and fully dispose the current discovered object, if any. */
+  _clearDiscovered() {
+    if (!this.discovered) return;
+    this.scene.remove(this.discovered);
+    this.discovered.traverse((node) => {
+      if (node.geometry) node.geometry.dispose();
+      if (node.material) {
+        const mats = Array.isArray(node.material) ? node.material : [node.material];
+        for (const m of mats) m.dispose(); // shared particle texture is cached, not disposed
+      }
+    });
+    this.discovered = null;
+    this.discoveredSpin = 0;
   }
 
   _onResize() {
@@ -116,8 +139,8 @@ export class StellarScene {
 
     this.starfield.update(delta);
 
-    if (this.galaxy) {
-      this.galaxy.rotation.y += delta * 0.05; // gentle galactic spin
+    if (this.discovered) {
+      this.discovered.rotation.y += delta * this.discoveredSpin; // gentle spin
     }
 
     if (this.cameraDrift) {

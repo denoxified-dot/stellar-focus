@@ -19,6 +19,26 @@
         <button id="stop" disabled>Stop</button>
       </div>
       <p id="hint">Press Start to begin a focus session.</p>
+
+      <!-- Populated when a session ends and a real exoplanet is discovered. -->
+      <div id="discovery" hidden>
+        <!-- Real NASA Astronomy Picture of the Day with its real caption. -->
+        <figure id="apod" hidden>
+          <img id="apod-img" alt="" />
+          <figcaption id="apod-caption">
+            <span id="apod-title"></span>
+            <span id="apod-credit"></span>
+            <span id="apod-explanation"></span>
+          </figcaption>
+        </figure>
+
+        <div id="discovery-body">
+          <div id="discovery-label">Exoplanet discovered</div>
+          <div id="discovery-name"></div>
+          <div id="discovery-stats"></div>
+          <p id="discovery-desc"></p>
+        </div>
+      </div>
     </div>
 
     <script type="module" src="/src/main.js"></script>
