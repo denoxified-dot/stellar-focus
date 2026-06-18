@@ -20,15 +20,16 @@
       </div>
       <p id="hint">Press Start to begin a focus session.</p>
 
-      <!-- Populated when a session ends and a real exoplanet is discovered. -->
+      <!-- Populated when a session ends and a real object is discovered. -->
       <div id="discovery" hidden>
-        <!-- Real NASA Astronomy Picture of the Day with its real caption. -->
-        <figure id="apod" hidden>
-          <img id="apod-img" alt="" />
-          <figcaption id="apod-caption">
-            <span id="apod-title"></span>
-            <span id="apod-credit"></span>
-            <span id="apod-explanation"></span>
+        <!-- A real NASA photograph of THIS object, shown only when one that
+             genuinely depicts it was found. Hidden otherwise (e.g. exoplanets,
+             which have no real photographs). -->
+        <figure id="object-image" hidden>
+          <img id="object-img" alt="" />
+          <figcaption id="object-caption">
+            <span id="object-credit"></span>
+            <span id="object-explanation"></span>
           </figcaption>
         </figure>
 
@@ -37,6 +38,7 @@
           <div id="discovery-name"></div>
           <div id="discovery-stats"></div>
           <p id="discovery-desc"></p>
+          <p id="discovery-note" hidden></p>
         </div>
       </div>
     </div>

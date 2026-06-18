@@ -109,9 +109,19 @@ export function buildDiscoveryVisual(choice, intensity) {
     const obj = createNebula({ subtype: object.subtype, size, intensity, seed });
     return { object3D: obj, radius: obj.userData.radius, spin: 0.02, kind };
   }
-  // planet
-  const obj = createPlanet({ radiusEarth: object.radiusEarth, size, intensity, seed, name: object.name });
-  return { object3D: obj, radius: obj.userData.radius, spin: 0.25, kind };
+  // planet — pass the real measured properties so its look is data-driven.
+  const obj = createPlanet({
+    radiusEarth: object.radiusEarth,
+    massEarth: object.massEarth,
+    equilibriumTempK: object.equilibriumTempK,
+    densityCgs: object.densityCgs,
+    orbitalPeriodDays: object.orbitalPeriodDays,
+    size,
+    intensity,
+    seed,
+    name: object.name,
+  });
+  return { object3D: obj, radius: obj.userData.radius, spin: 0.12, kind };
 }
 
 // --- description for the discovery card -------------------------------------
@@ -129,15 +139,20 @@ const LABELS = {
   planet: 'Exoplanet discovered',
 };
 
+// Shown beneath an exoplanet's data so the rendering is never mistaken for a
+// real photograph (no real images of exoplanets exist).
+const PLANET_NOTE =
+  "Artistic representation generated from this planet's measured data — not a photograph.";
+
 /**
  * Readable description for the discovery card.
- * @returns {{ label, name, headline, description }}
+ * @returns {{ label, name, headline, description, note }}
  */
 export function describeDiscovery(choice) {
   const { kind, object } = choice;
 
   if (kind === 'planet') {
-    return { label: LABELS.planet, ...describePlanet(object) };
+    return { label: LABELS.planet, note: PLANET_NOTE, ...describePlanet(object) };
   }
 
   const name = object.name || `Messier ${object.messier}`;
@@ -155,5 +170,5 @@ export function describeDiscovery(choice) {
     `${object.description} It lies about ${formatLy(object.distanceLy)} away` +
     `${object.constellation ? `, in the constellation ${object.constellation}` : ''}.`;
 
-  return { label: LABELS[kind], name, headline, description };
+  return { label: LABELS[kind], name, headline, description, note: '' };
 }

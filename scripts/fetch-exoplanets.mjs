@@ -17,13 +17,18 @@ const OUT_PATH = resolve(__dirname, '..', 'public', 'exoplanets.json');
 // Columns we pull, mapped to friendlier keys when we store them:
 //   pl_name         planet name
 //   hostname        host star name
-//   pl_rade         planet radius   [Earth radii]
-//   pl_bmasse       planet mass     [Earth masses]
-//   pl_orbper       orbital period  [days]
+//   pl_rade         planet radius        [Earth radii]
+//   pl_bmasse       planet mass          [Earth masses]
+//   pl_orbper       orbital period       [days]
+//   pl_eqt          equilibrium temp     [Kelvin]  (often null — best-effort)
+//   pl_dens         bulk density         [g/cm^3]  (separates rocky vs gaseous)
 //   disc_year       discovery year
 //   discoverymethod discovery method
+// pl_eqt and pl_dens drive the procedural planet rendering (temperature colour
+// and rocky/gaseous appearance); both are frequently missing, so the renderer
+// falls back gracefully when they are null.
 const ADQL = [
-  'select pl_name, hostname, pl_rade, pl_bmasse, pl_orbper, disc_year, discoverymethod',
+  'select pl_name, hostname, pl_rade, pl_bmasse, pl_orbper, pl_eqt, pl_dens, disc_year, discoverymethod',
   'from pscomppars',
   'where pl_name is not null',
 ].join(' ');
@@ -58,6 +63,8 @@ async function main() {
     radiusEarth: num(r.pl_rade),
     massEarth: num(r.pl_bmasse),
     orbitalPeriodDays: num(r.pl_orbper),
+    equilibriumTempK: num(r.pl_eqt),
+    densityCgs: num(r.pl_dens),
     discoveryYear: num(r.disc_year),
     discoveryMethod: r.discoverymethod ?? null,
   }));

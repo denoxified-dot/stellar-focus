@@ -1,6 +1,6 @@
 {
   "source": "Messier catalog — values per the SEDS Messier Database and modern consensus",
-  "builtAt": "2026-06-17T01:23:16.852Z",
+  "builtAt": "2026-06-18T05:23:32.262Z",
   "count": 110,
   "objects": [
     {
@@ -11,7 +11,14 @@
       "constellation": "Taurus",
       "distanceLy": 6500,
       "magnitude": 8.4,
-      "description": "The expanding wreckage of a supernova seen from Earth in 1054 AD; a rapidly spinning neutron star (pulsar) sits at its core."
+      "description": "The expanding wreckage of a supernova seen from Earth in 1054 AD; a rapidly spinning neutron star (pulsar) sits at its core.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA03606/PIA03606~medium.jpg",
+        "title": "Most Detailed Image of the Crab Nebula",
+        "credit": "NASA Image and Video Library · JPL · NASA/ESA/JPL/Arizona State Univ.",
+        "description": "The Crab Nebula is one of the most intricately structured and highly  dynamical objects ever observed. The new Hubble image of the Crab was  assembled from 24 individual exposures taken with the NASA/ESA Hubble  Space Telescope",
+        "nasaId": "PIA03606"
+      }
     },
     {
       "messier": 2,
@@ -21,7 +28,14 @@
       "constellation": "Aquarius",
       "distanceLy": 37500,
       "magnitude": 6.3,
-      "description": "One of the larger and richer globular clusters, holding roughly 150,000 stars in a sphere about 175 light-years across."
+      "description": "One of the larger and richer globular clusters, holding roughly 150,000 stars in a sphere about 175 light-years across.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04926/PIA04926~small.jpg",
+        "title": "Globular Cluster Messier 2 in Aquarius",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL/California Institute of Technology",
+        "description": "This image of the Globular cluster Messier 2 (M2) was taken by Galaxy Evolution Explorer on August 20, 2003. This image is a small section of a single All Sky Imaging Survey exposure of only 129 seconds in the constellation Aquarius. This picture is a combination of Galaxy Evolution Explorer images taken with the far ultraviolet (colored blue) and near ultraviolet detectors (colored red). Globular clusters are gravitationally bound systems of hundreds of thousands of stars that orbit in the halos of galaxies. The globular clusters in out Milky Way galaxy contain some of the oldest stars known. M2 lies 33,000 light years from our Sun with stars distributed in a spherical system with a radius of approximately 100 light years.   http://photojournal.jpl.nasa.gov/catalog/PIA04926",
+        "nasaId": "PIA04926"
+      }
     },
     {
       "messier": 3,
@@ -51,7 +65,14 @@
       "constellation": "Serpens",
       "distanceLy": 24500,
       "magnitude": 5.6,
-      "description": "An ancient globular cluster, roughly 13 billion years old, spanning about 165 light-years."
+      "description": "An ancient globular cluster, roughly 13 billion years old, spanning about 165 light-years.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001116/GSFC_20171208_Archive_e001116~small.jpg",
+        "title": "Cosmic Fairy Lights",
+        "credit": "NASA Image and Video Library · GSFC",
+        "description": "This sparkling jumble is Messier 5 — a globular cluster consisting of hundreds of thousands of stars bound together by their collective gravity.  But Messier 5 is no normal globular cluster. At 13 billion years old it dates back to close to the beginning of the Universe, which is some 13.8 billion years of age. It is also one of the biggest clusters known, and at only 24 500 light-years away, it is no wonder that Messier 5 is a popular site for astronomers to train their telescopes on.  Messier 5 also presents a puzzle. Stars in globular clusters grow old and wise together. So Messier 5 should, by now, consist of old, low-mass red giants and other ancient stars. But it is actually teeming with young blue stars known as blue stragglers. These stars spring to life when stars collide, or rip material from one another.  Credit: ESA/NASA  <b><a href=\"http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html\" rel=\"nofollow\">NASA image use policy.</a></b>   <b><a href=\"http://www.nasa.gov/centers/goddard/home/index.html\" rel=\"nofollow\">NASA Goddard Space Flight Center</a></b> enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.   <b>Follow us on <a href=\"http://twitter.com/NASAGoddardPix\" rel=\"nofollow\">Twitter</a></b>   <b>Like us on <a href=\"http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd\" rel=\"nofollow\">Facebook</a></b>   <b>Find us on <a href=\"http://instagram.com/nasagoddard?vm=grid\" rel=\"nofollow\">Instagram</a></b>",
+        "nasaId": "GSFC_20171208_Archive_e001116"
+      }
     },
     {
       "messier": 6,
@@ -81,7 +102,14 @@
       "constellation": "Sagittarius",
       "distanceLy": 4100,
       "magnitude": 6,
-      "description": "A giant star-forming cloud crossed by a dark, lagoon-shaped dust lane."
+      "description": "A giant star-forming cloud crossed by a dark, lagoon-shaped dust lane.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001955/GSFC_20171208_Archive_e001955~medium.jpg",
+        "title": "Hubble reveals heart of Lagoon Nebula",
+        "credit": "NASA Image and Video Library · GSFC",
+        "description": "Image release date September 22, 2010  To view a video of this image go here: <a href=\"http://www.flickr.com/photos/gsfc/5014452203\">www.flickr.com/photos/gsfc/5014452203</a>  Caption: A spectacular new NASA/ESA Hubble Space Telescope image reveals the heart of the Lagoon Nebula. Seen as a massive cloud of glowing dust and gas, bombarded by the energetic radiation of new stars, this placid name hides a dramatic reality.  The Advanced Camera for Surveys (ACS) on the NASA/ESA Hubble Space Telescope has captured a dramatic view of gas and dust sculpted by intense radiation from hot young stars deep in the heart of the Lagoon Nebula (Messier 8). This spectacular object is named after the wide, lagoon-shaped dust lane that crosses the glowing gas of the nebula.  This structure is prominent in wide-field images, but cannot be seen in this close-up. However the strange billowing shapes and sandy texture visible in this image make the Lagoon Nebula’s watery name eerily appropriate from this viewpoint too.  Located four to five thousand light-years away, in the constellation of Sagittarius (the Archer), Messier 8 is a huge region of star birth that stretches across one hundred light-years. Clouds of hydrogen gas are slowly collapsing to form new stars, whose bright ultraviolet rays then light up the surrounding gas in a distinctive shade of red.  The wispy tendrils and beach-like features of the nebula are not caused by the ebb and flow of tides, but rather by ultraviolet radiation’s ability to erode and disperse the gas and dust into the distinctive shapes that we see.  In recent years astronomers probing the secrets of the Lagoon Nebula have found the first unambiguous proof that star formation by accretion of matter from the gas cloud is ongoing in this region.  Young stars that are still surrounded by an accretion disc occasionally shoot out long tendrils of matter from their poles. Several examples of these jets, known as Herbig-Haro objects, have been found in this nebula in the last five years, providing strong support for astronomers’ theories about star formation in such hydrogen-rich regions.  The Lagoon Nebula is faintly visible to the naked eye on dark nights as a small patch of grey in the heart of the Milky Way. Without a telescope, the nebula looks underwhelming because human eyes are unable to distinguish clearly between colours at low light levels. Charles Messier, the 18th century French astronomer, observed the nebula and included it in his famous astronomical catalogue, from which the nebula’s alternative name comes. But his relatively small refracting telescope would only have hinted at the dramatic structures and colours now visible thanks to Hubble.  The Hubble Space Telescope is a project of international cooperation between ESA and NASA.  Image credit: NASA, ESA  <b><a href=\"http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html\" rel=\"nofollow\">NASA image use policy.</a></b>  <b><a href=\"http://www.nasa.gov/centers/goddard/home/index.html\" rel=\"nofollow\">NASA Goddard Space Flight Center</a></b> enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  <b>Follow us on <a href=\"http://twitter.com/NASAGoddardPix\" rel=\"nofollow\">Twitter</a></b>  <b>Like us on <a href=\"http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd\" rel=\"nofollow\">Facebook</a></b>  <b>Find us on <a href=\"http://instagram.com/nasagoddard?vm=grid\" rel=\"nofollow\">Instagram</a></b>  To learn more about the Hubble Space Telescope go here: <a href=\"http://www.nasa.gov/mission_pages/hubble/main/index.html\" rel=\"nofollow\">www.nasa.gov/mission_pages/hubble/main/index.html</a>",
+        "nasaId": "GSFC_20171208_Archive_e001955"
+      }
     },
     {
       "messier": 9,
@@ -111,7 +139,14 @@
       "constellation": "Scutum",
       "distanceLy": 6200,
       "magnitude": 6.3,
-      "description": "One of the richest and most compact open clusters, its brighter stars forming a V like a flight of ducks."
+      "description": "One of the richest and most compact open clusters, its brighter stars forming a V like a flight of ducks.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA07878/PIA07878~small.jpg",
+        "title": "Wild Duck Cluster",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL",
+        "description": "On April 7, 2005, NASA Deep Impact spacecraft Impactor Target Sensor camera recorded this image of M11, the Wild Duck cluster, a galactic open cluster located 6 thousand light years away. ",
+        "nasaId": "PIA07878"
+      }
     },
     {
       "messier": 12,
@@ -161,7 +196,14 @@
       "constellation": "Serpens",
       "distanceLy": 7000,
       "magnitude": 6,
-      "description": "Home of the 'Pillars of Creation' — towering columns of gas and dust where new stars are being born."
+      "description": "Home of the 'Pillars of Creation' — towering columns of gas and dust where new stars are being born.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA25433/PIA25433~medium.jpg",
+        "title": "The Eagle Nebula Observed by WISE",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech",
+        "description": "The dusty face of the Eagle Nebula and its surroundings are revealed in this image based on data from NASA's Wide Field Survey Explorer (WISE). WISE detects infrared light, or a range of wavelengths longer than what the human eye can see. This large star forming region is about 5,700 light years away from Earth and is most famous for being home to the the \"Pillars of Creation,\" a region famously imaged by NASA's Hubble and James Webb space telescopes. The WISE data reveals the entire structure of the nebula surrounding the pillars, which themselves can be seen as a faint yellow-green feature inside the white circle.  While the WISE view of the \"Pillars\" is not as sharp as those taken by Webb and Hubble, the telescope's wide field of view allows us to explore the extended nebula around it. When viewed in visible light, the dust is dark and opaque. In these infrared wavelengths, the dust becomes more translucent, and emits infrared light, shown in green, yellow, and red in this image.  The data used in this image came from WISE's primary mission which ran from 2009 to 2011. In 2013, NASA took the spacecraft out of hibernation and began using it to track and study near-Earth objects. The mission and the spacecraft were renamed NEOWISE. However, the data is still being used by astronomers to study objects and regions outside our solar system.  Blue and cyan are used to represent infrared light at wavelengths of 3.4 and 4.6 microns, while green and red display longer wavelengths of 12 and 22 microns, respectively.  Animation available at https://photojournal.jpl.nasa.gov/catalog/PIA25433",
+        "nasaId": "PIA25433"
+      }
     },
     {
       "messier": 17,
@@ -171,7 +213,14 @@
       "constellation": "Sagittarius",
       "distanceLy": 5000,
       "magnitude": 6,
-      "description": "A bright star-forming region also known as the Swan or Horseshoe Nebula."
+      "description": "A bright star-forming region also known as the Swan or Horseshoe Nebula.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg",
+        "title": "History of Hubble Space Telescope (HST)",
+        "credit": "NASA Image and Video Library · MSFC",
+        "description": "In this sturning image provided by the Hubble Space Telescope (HST), the Omega Nebula (M17) resembles the fury of a raging sea, showing a bubbly ocean of glowing hydrogen gas and small amounts of other elements such as oxygen and sulfur. The nebula, also known as the Swan Nebula, is a hotbed of newly born stars residing 5,500 light-years away in the constellation Sagittarius. The wavelike patterns of gas have been sculpted and illuminated by a torrent of ultraviolet radiation from the young massive stars, which lie outside the picture to the upper left. The ultraviolet radiation is carving and heating the surfaces of cold hydrogen gas clouds. The warmed surfaces glow orange and red in this photograph. The green represents an even hotter gas that masks background structures. Various gases represented with color are: sulfur, represented in red; hydrogen, green; and oxygen blue.",
+        "nasaId": "0302063"
+      }
     },
     {
       "messier": 18,
@@ -201,7 +250,14 @@
       "constellation": "Sagittarius",
       "distanceLy": 5200,
       "magnitude": 6.3,
-      "description": "A striking mix of red emission nebula, blue reflection nebula, and dark dust lanes that split it into three lobes."
+      "description": "A striking mix of red emission nebula, blue reflection nebula, and dark dust lanes that split it into three lobes.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04220/PIA04220~small.jpg",
+        "title": "Trifid Nebula",
+        "credit": "NASA Image and Video Library · JPL · 2MASS",
+        "description": "Atlas Image mosaic, covering 14.8 x 20.0 on the sky, of the Trifid Nebula, aka Messier 20 and NGC 6514. The Trifid is only about 1.5 degrees northwest on the sky of the larger Lagoon Nebula Messier 8 in the constellation Sagittarius",
+        "nasaId": "PIA04220"
+      }
     },
     {
       "messier": 21,
@@ -271,7 +327,14 @@
       "constellation": "Vulpecula",
       "distanceLy": 1360,
       "magnitude": 7.5,
-      "description": "The first planetary nebula ever discovered — the glowing, shed outer layers of a dying Sun-like star."
+      "description": "The first planetary nebula ever discovered — the glowing, shed outer layers of a dying Sun-like star.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04249/PIA04249~small.jpg",
+        "title": "Close-up of M27, the Dumbbell Nebula",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL/STScI",
+        "description": "An aging star last hurrah creates a flurry of glowing knots of gas that appear to be streaking through space. This closeup image of the Dumbbell Nebula was taken by the JPL-built and designed WFC3 camera, onboard NASA's Hubble Space Telescope.  http://photojournal.jpl.nasa.gov/catalog/PIA04249",
+        "nasaId": "PIA04249"
+      }
     },
     {
       "messier": 28,
@@ -311,7 +374,14 @@
       "constellation": "Andromeda",
       "distanceLy": 2500000,
       "magnitude": 3.4,
-      "description": "The nearest large spiral galaxy and the most distant object visible to the unaided eye; it is on a slow collision course with the Milky Way."
+      "description": "The nearest large spiral galaxy and the most distant object visible to the unaided eye; it is on a slow collision course with the Milky Way.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04921/PIA04921~medium.jpg",
+        "title": "Andromeda Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL/California Institute of Technology",
+        "description": "This image is from NASA Galaxy Evolution Explorer is an observation of the large galaxy in Andromeda, Messier 31. The Andromeda galaxy is the most massive in the local group of galaxies that includes our Milky Way.",
+        "nasaId": "PIA04921"
+      }
     },
     {
       "messier": 32,
@@ -331,7 +401,14 @@
       "constellation": "Triangulum",
       "distanceLy": 2730000,
       "magnitude": 5.7,
-      "description": "The third-largest galaxy in the Local Group, a face-on spiral rich with glowing star-forming regions."
+      "description": "The third-largest galaxy in the Local Group, a face-on spiral rich with glowing star-forming regions.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA25165/PIA25165~medium.jpg",
+        "title": "Triangulum Galaxy Imaged by Herschel, Planck, IRAS, COBE",
+        "credit": "NASA Image and Video Library · JPL · ESA/NASA/JPL-Caltech/GBT/VLA/IRAM/C. Clark (STScI)",
+        "description": "This image of the Triangulum galaxy, or M33, includes data from the ESA (European Space Agency) Herschel mission, supplemented with data from ESA's retired Planck observatory and two retired NASA missions: the Infrared Astronomical Satellite (IRAS) and Cosmic Background Explorer (COBE).      Operated from 2009 to 2013, Herschel detected wavelengths of light in the far-infrared and microwave ranges, and was ideal for studying dust in nearby galaxies because it could capture small-scale structures in the dust clouds in high resolution. However, Herschel often couldn't detect light from diffuse dust clouds – especially in the outer regions of galaxies, where the gas and dust become sparse and thus fainter. As a result, the mission missed up to 30% of all the light given off by dust. Combining the Herschel observations with data from other observatories creates a more complete picture of the dust in the galaxy.      In the image, red indicates hydrogen gas; green indicates cold dust; and warmer dust is shown in blue. Launched in 1983, IRAS was the first space telescope to detect infrared light, setting the stage for future observatories like NASA's Spitzer Space Telescope and James Webb Space Telescope. The Planck observatory, launched in 2009, and COBE, launched in 1989, both studied the cosmic microwave background, or light left over from the big bang.      The hydrogen gas was detected using the Green Bank Telescope in West Virginia, the Karl G. Jansky Very Large Array in New Mexico, and the Institute for Radio Astronomy in the Millimeter Range 30-meter telescope in Spain.  https://photojournal.jpl.nasa.gov/catalog/PIA25165",
+        "nasaId": "PIA25165"
+      }
     },
     {
       "messier": 34,
@@ -421,7 +498,14 @@
       "constellation": "Orion",
       "distanceLy": 1344,
       "magnitude": 4,
-      "description": "The nearest large stellar nursery to Earth, visible to the naked eye as the middle 'star' of Orion's sword."
+      "description": "The nearest large stellar nursery to Earth, visible to the naked eye as the middle 'star' of Orion's sword.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04227/PIA04227~small.jpg",
+        "title": "Orion Nebula and Bow Shock",
+        "credit": "NASA Image and Video Library · JPL · NASA and the Hubble Heritage Team STScI/AURA",
+        "description": "Astronomers using NASA Hubble Space Telescope have found a bow shock around a very young star in the nearby Orion nebula, an intense star-forming region of gas and dust. ",
+        "nasaId": "PIA04227"
+      }
     },
     {
       "messier": 43,
@@ -451,7 +535,14 @@
       "constellation": "Taurus",
       "distanceLy": 444,
       "magnitude": 1.6,
-      "description": "The Seven Sisters — a brilliant young open cluster wrapped in wisps of blue reflection nebulosity."
+      "description": "The Seven Sisters — a brilliant young open cluster wrapped in wisps of blue reflection nebulosity.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA09262/PIA09262~medium.jpg",
+        "title": "Pink Pleiades",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech",
+        "description": "The Seven Sisters, also known as the Pleiades star cluster, seem to float on a bed of feathers in a new infrared image from NASA Spitzer Space Telescope. Clouds of dust sweep around the stars, swaddling them in a cushiony veil. ",
+        "nasaId": "PIA09262"
+      }
     },
     {
       "messier": 46,
@@ -511,7 +602,14 @@
       "constellation": "Canes Venatici",
       "distanceLy": 23000000,
       "magnitude": 8.4,
-      "description": "A grand-design spiral interacting with a small companion; the first galaxy ever recognized to have spiral structure."
+      "description": "A grand-design spiral interacting with a small companion; the first galaxy ever recognized to have spiral structure.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA04230/PIA04230~small.jpg",
+        "title": "Whirlpool Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA and The Hubble Heritage Team STScI/AURA Acknowledgement: N. Scoville Caltech and T. Rector NOAO",
+        "description": "The image from NASA Hubble Telescope shows spiral arms and dust clouds in the nearby Whirlpool galaxy. Visible starlight and light from the emission of glowing hydrogen is seen, which is associated with the most luminous young stars in the spiral arms.",
+        "nasaId": "PIA04230"
+      }
     },
     {
       "messier": 52,
@@ -571,7 +669,14 @@
       "constellation": "Lyra",
       "distanceLy": 2300,
       "magnitude": 8.8,
-      "description": "A famous ring-shaped planetary nebula — the glowing shell of gas cast off by a dying Sun-like star."
+      "description": "A famous ring-shaped planetary nebula — the glowing shell of gas cast off by a dying Sun-like star.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e001464/GSFC_20171208_Archive_e001464~small.jpg",
+        "title": "Hubble reveals the Ring Nebula’s true shape",
+        "credit": "NASA Image and Video Library · GSFC",
+        "description": "Caption: In this composite image, visible-light observations by NASA’s Hubble Space Telescope are combined with infrared data from the ground-based Large Binocular Telescope in Arizona to assemble a dramatic view of the well-known Ring Nebula.   Credit: NASA, ESA, C.R. Robert O’Dell (Vanderbilt University), G.J. Ferland (University of Kentucky), W.J. Henney and M. Peimbert (National Autonomous University of Mexico) Credit for Large Binocular Telescope data: David Thompson (University of Arizona)   ----  The Ring Nebula's distinctive shape makes it a popular illustration for astronomy books. But new observations by NASA's Hubble Space Telescope of the glowing gas shroud around an old, dying, sun-like star reveal a new twist.  &quot;The nebula is not like a bagel, but rather, it's like a jelly doughnut, because it's filled with material in the middle,&quot; said C. Robert O'Dell of Vanderbilt University in Nashville, Tenn. He leads a research team that used Hubble and several ground-based telescopes to obtain the best view yet of the iconic nebula. The images show a more complex structure than astronomers once thought and have allowed them to construct the most precise 3-D model of the nebula.  &quot;With Hubble's detail, we see a completely different shape than what's been thought about historically for this classic nebula,&quot; O'Dell said. &quot;The new Hubble observations show the nebula in much clearer detail, and we see things are not as simple as we previously thought.&quot;   The Ring Nebula is about 2,000 light-years from Earth and measures roughly 1 light-year across. Located in the constellation Lyra, the nebula is a popular target for amateur astronomers. Read more: <a href=\"http://1.usa.gov/14VAOMk\" rel=\"nofollow\">1.usa.gov/14VAOMk</a>  <b><a href=\"http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html\" rel=\"nofollow\">NASA image use policy.</a></b>  <b><a href=\"http://www.nasa.gov/centers/goddard/home/index.html\" rel=\"nofollow\">NASA Goddard Space Flight Center</a></b> enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  <b>Follow us on <a href=\"http://twitter.com/NASA_GoddardPix\" rel=\"nofollow\">Twitter</a></b>  <b>Like us on <a href=\"http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd\" rel=\"nofollow\">Facebook</a></b>  <b>Find us on <a href=\"http://instagram.com/nasagoddard?vm=grid\" rel=\"nofollow\">Instagram</a></b>",
+        "nasaId": "GSFC_20171208_Archive_e001464"
+      }
     },
     {
       "messier": 58,
@@ -631,7 +736,14 @@
       "constellation": "Canes Venatici",
       "distanceLy": 29300000,
       "magnitude": 8.6,
-      "description": "A spiral galaxy with many short, patchy arms that resemble the petals of a sunflower."
+      "description": "A spiral galaxy with many short, patchy arms that resemble the petals of a sunflower.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA13900/PIA13900~small.jpg",
+        "title": "Spitzer Sunflower Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech",
+        "description": "This view of the Sunflower galaxy highlights a variety of infrared wavelengths captured by NASA Spitzer Space Telescope.",
+        "nasaId": "PIA13900"
+      }
     },
     {
       "messier": 64,
@@ -641,7 +753,14 @@
       "constellation": "Coma Berenices",
       "distanceLy": 17300000,
       "magnitude": 8.5,
-      "description": "Famous for a dark band of dust sweeping in front of its bright nucleus, giving it a 'black eye'."
+      "description": "Famous for a dark band of dust sweeping in front of its bright nucleus, giving it a 'black eye'.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/0400392/0400392~medium.jpg",
+        "title": "History of Hubble Space Telescope (HST)",
+        "credit": "NASA Image and Video Library · MSFC",
+        "description": "Residing roughly 17 million light years from Earth, in the northern constellation Coma Berenices, is a merged star system known as Messier 64 (M64). First cataloged in the 18th century by the French astronomer Messier, M64 is a result of two colliding galaxies and has an unusual appearance as well as bizarre internal motions. It has a spectacular dark band of absorbing dust in front of its bright nucleus, lending to it the nickname of the \"Black Eye\" or \"Evil Eye\" galaxy. Fine details of the dark band can be seen in this image of the central portion of M64 obtained by the Wide Field Planetary Camera (WFPC2) of NASA's Hubble Space Telescope (HST). Appearing to be a fairly normal pinwheel-shaped galaxy, the M64 stars are rotating in the same direction, clockwise, as in the majority of galaxies. However, detailed studies in the 1990's led to the remarkable discovery that the interstellar gas in the outer regions of M64 rotates in the opposite direction from the gas and stars in the irner region. Astronomers believe that the oppositely rotating gas arose when M64 absorbed a satellite galaxy that collided with it, perhaps more than one billion years ago. The Marshall Space Flight Center had responsibility for design, development, and construction of the HST.",
+        "nasaId": "0400392"
+      }
     },
     {
       "messier": 65,
@@ -821,7 +940,14 @@
       "constellation": "Ursa Major",
       "distanceLy": 11500000,
       "magnitude": 8.4,
-      "description": "An edge-on starburst galaxy ablaze with star formation, triggered by a close encounter with M81."
+      "description": "An edge-on starburst galaxy ablaze with star formation, triggered by a close encounter with M81.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA18841/PIA18841~medium.jpg",
+        "title": "NuSTAR Finds a Pulse in Cigar Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech/SAO/NOAO",
+        "description": "The bulk of a galaxy called Messier 82 M82, or the Cigar galaxy, is seen in visible-light data captured by the National Optical Astronomy Observatory 2.1-meter telescope at Kitt Peak in Arizona.",
+        "nasaId": "PIA18841"
+      }
     },
     {
       "messier": 83,
@@ -831,7 +957,14 @@
       "constellation": "Hydra",
       "distanceLy": 15000000,
       "magnitude": 7.5,
-      "description": "A nearby face-on barred spiral that has hosted an unusually high number of observed supernovae."
+      "description": "A nearby face-on barred spiral that has hosted an unusually high number of observed supernovae.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA10374/PIA10374~medium.jpg",
+        "title": "Ultraviolet Extensions",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech/MPIA",
+        "description": "This ultraviolet image from NASA Galaxy Evolution Explorer shows the Southern Pinwheel galaxy, also know as Messier 83 or M83. It is located 15 million light-years away in the southern constellation Hydra.",
+        "nasaId": "PIA10374"
+      }
     },
     {
       "messier": 84,
@@ -941,7 +1074,14 @@
       "constellation": "Canes Venatici",
       "distanceLy": 16000000,
       "magnitude": 8.2,
-      "description": "A spiral galaxy ringed by a bright halo of active star formation around its core."
+      "description": "A spiral galaxy ringed by a bright halo of active star formation around its core.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/GSFC_20171208_Archive_e000526/GSFC_20171208_Archive_e000526~small.jpg",
+        "title": "A Hubble View of Starburst Galaxy Messier 94",
+        "credit": "NASA Image and Video Library · GSFC",
+        "description": "This image shows the galaxy Messier 94, which lies in the small northern constellation of the Hunting Dogs, about 16 million light-years away.  Within the bright ring or starburst ring around Messier 94, new stars are forming at a high rate and many young, bright stars are present within it.  The cause of this peculiarly shaped star-forming region is likely a pressure wave going outwards from the galactic center, compressing the gas and dust in the outer region. The compression of material means the gas starts to collapse into denser clouds. Inside these dense clouds, gravity pulls the gas and dust together until temperature and pressure are high enough for stars to be born.  Image credit: ESA/NASA  <b><a href=\"http://www.nasa.gov/audience/formedia/features/MP_Photo_Guidelines.html\" rel=\"nofollow\">NASA image use policy.</a></b>  <b><a href=\"http://www.nasa.gov/centers/goddard/home/index.html\" rel=\"nofollow\">NASA Goddard Space Flight Center</a></b> enables NASA’s mission through four scientific endeavors: Earth Science, Heliophysics, Solar System Exploration, and Astrophysics. Goddard plays a leading role in NASA’s accomplishments by contributing compelling scientific knowledge to advance the Agency’s mission.  <b>Follow us on <a href=\"http://twitter.com/NASAGoddardPix\" rel=\"nofollow\">Twitter</a></b>  <b>Like us on <a href=\"http://www.facebook.com/pages/Greenbelt-MD/NASA-Goddard/395013845897?ref=tsd\" rel=\"nofollow\">Facebook</a></b>  <b>Find us on <a href=\"http://instagrid.me/nasagoddard/?vm=grid\" rel=\"nofollow\">Instagram</a></b>  ",
+        "nasaId": "GSFC_20171208_Archive_e000526"
+      }
     },
     {
       "messier": 95,
@@ -961,7 +1101,14 @@
       "constellation": "Leo",
       "distanceLy": 31000000,
       "magnitude": 9.2,
-      "description": "The brightest galaxy in the Leo I group."
+      "description": "The brightest galaxy in the Leo I group.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/hubble-peers-into-the-heart-of-a-galactic-maelstrom_20949846630_o/hubble-peers-into-the-heart-of-a-galactic-maelstrom_20949846630_o~medium.jpg",
+        "title": "A galactic maelstrom",
+        "credit": "NASA Image and Video Library · GSFC",
+        "description": "This new NASA/ESA Hubble Space Telescope shows Messier 96, a spiral galaxy just over 35 million light-years away in the constellation of Leo (The Lion). It is of about the same mass and size as the Milky Way. It was first discovered by astronomer Pierre Méchain in 1781, and added to Charles Messier’s famous catalogue of astronomical objects just four days later. The galaxy resembles a giant maelstrom of glowing gas, rippled with dark dust that swirls inwards towards the nucleus. Messier 96 is a very asymmetric galaxy; its dust and gas is unevenly spread throughout its weak spiral arms, and its core is not exactly at the galactic centre. Its arms are also asymmetrical, thought to have been influenced by the gravitational pull of other galaxies within the same group as Messier 96. This group, named the M96 Group, also includes the bright galaxies Messier 105 and Messier 95, as well as a number of smaller and fainter galaxies. It is the nearest group containing both bright spirals and a bright elliptical galaxy (Messier 105).",
+        "nasaId": "hubble-peers-into-the-heart-of-a-galactic-maelstrom_20949846630_o"
+      }
     },
     {
       "messier": 97,
@@ -1001,7 +1148,14 @@
       "constellation": "Coma Berenices",
       "distanceLy": 55000000,
       "magnitude": 9.3,
-      "description": "One of the brightest spiral galaxies in the Virgo Cluster, with well-defined, symmetric arms."
+      "description": "One of the brightest spiral galaxies in the Virgo Cluster, with well-defined, symmetric arms.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA15909/PIA15909~small.jpg",
+        "title": "Hot and Cold in the M100 Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech",
+        "description": "The galaxy Messier 100, or M100, shows its swirling spiral in this infrared image from NASA Spitzer Space Telescope. The arcing spiral arms of dust and gas that harbor star forming regions glow vividly when seen in the infrared.",
+        "nasaId": "PIA15909"
+      }
     },
     {
       "messier": 101,
@@ -1011,7 +1165,14 @@
       "constellation": "Ursa Major",
       "distanceLy": 20900000,
       "magnitude": 7.9,
-      "description": "A large, face-on spiral with prominent, slightly lopsided arms."
+      "description": "A large, face-on spiral with prominent, slightly lopsided arms.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA14403/PIA14403~medium.jpg",
+        "title": "M 101: The Pinwheel Galaxy",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech/UCLA",
+        "description": "A large spiral galaxy dominates this view from NASA Wide-field Infrared Survey Explorer. The galaxy, often called the Pinwheel galaxy, was designated object 101 in astronomer Charles Messier catalog of fuzzy things in the sky that are not comets.",
+        "nasaId": "PIA14403"
+      }
     },
     {
       "messier": 102,
@@ -1041,7 +1202,14 @@
       "constellation": "Virgo",
       "distanceLy": 29300000,
       "magnitude": 8,
-      "description": "An edge-on spiral with a bright central bulge and a dark dust lane, giving it the profile of a sombrero."
+      "description": "An edge-on spiral with a bright central bulge and a dark dust lane, giving it the profile of a sombrero.",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA15426/PIA15426~medium.jpg",
+        "title": "The Sombrero Galaxy Split Personality",
+        "credit": "NASA Image and Video Library · JPL · NASA/JPL-Caltech",
+        "description": "This infrared vision of NASA Spitzer Space Telescope has revealed that the Sombrero galaxy, named after its appearance in visible light to a wide-brimmed hat, is in fact two galaxies in one.",
+        "nasaId": "PIA15426"
+      }
     },
     {
       "messier": 105,

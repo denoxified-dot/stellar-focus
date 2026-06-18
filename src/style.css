@@ -114,6 +114,23 @@ button:disabled {
   letter-spacing: 0.1em;
 }
 
+/* During the supernova reveal, clear the central UI so the burst owns the
+   screen; it eases back in when the animation completes. */
+#title,
+#timer,
+#controls,
+#hint {
+  transition: opacity 0.4s ease;
+}
+
+#ui.revealing #title,
+#ui.revealing #timer,
+#ui.revealing #controls,
+#ui.revealing #hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Discovery card shown when a session ends and a real exoplanet is revealed.
    Two columns on wide screens (NASA photo | text), stacked on narrow ones. */
 #discovery {
@@ -137,19 +154,19 @@ button:disabled {
   display: none;
 }
 
-/* NASA Astronomy Picture of the Day + its astronomer-written caption. */
-#apod {
+/* A real NASA photograph of the discovered object + its caption. */
+#object-image {
   flex: 0 0 42%;
   display: flex;
   flex-direction: column;
   min-width: 0;
 }
 
-#apod[hidden] {
+#object-image[hidden] {
   display: none;
 }
 
-#apod-img {
+#object-img {
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
@@ -158,7 +175,7 @@ button:disabled {
   box-shadow: 0 0 28px rgba(143, 211, 255, 0.18);
 }
 
-#apod-caption {
+#object-caption {
   margin-top: 0.55rem;
   display: flex;
   flex-direction: column;
@@ -167,20 +184,14 @@ button:disabled {
   min-height: 0;
 }
 
-#apod-title {
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: var(--accent);
-}
-
-#apod-credit {
+#object-credit {
   font-size: 0.68rem;
   letter-spacing: 0.06em;
   opacity: 0.55;
   text-transform: uppercase;
 }
 
-#apod-explanation {
+#object-explanation {
   font-size: 0.78rem;
   line-height: 1.5;
   opacity: 0.82;
@@ -201,7 +212,7 @@ button:disabled {
     overflow-y: auto;
   }
 
-  #apod {
+  #object-image {
     flex-basis: auto;
   }
 }
@@ -234,6 +245,20 @@ button:disabled {
   font-size: 0.92rem;
   line-height: 1.5;
   opacity: 0.9;
+}
+
+/* Honest labelling: the exoplanet visual is an artist's impression, not a photo. */
+#discovery-note {
+  margin-top: 0.7rem;
+  font-size: 0.7rem;
+  line-height: 1.4;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  opacity: 0.55;
+}
+
+#discovery-note[hidden] {
+  display: none;
 }
 
 @keyframes discovery-in {

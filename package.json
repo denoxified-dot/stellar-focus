@@ -9,8 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "fetch-data": "node scripts/fetch-exoplanets.mjs",
-    "fetch-apod": "node scripts/fetch-apod.mjs",
-    "fetch-messier": "node scripts/fetch-messier.mjs"
+    "fetch-messier": "node scripts/fetch-messier.mjs",
+    "fetch-messier-images": "node scripts/fetch-messier-images.mjs"
   },
   "dependencies": {
     "three": "^0.169.0"

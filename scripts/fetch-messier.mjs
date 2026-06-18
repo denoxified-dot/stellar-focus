@@ -2,7 +2,7 @@
 // deep-sky objects — to public/messier.json, which the app can load at runtime.
 // Run with:  node scripts/fetch-messier.mjs   (or: npm run fetch-messier)
 //
-// Unlike the exoplanet/APOD fetchers, this data is a curated, fixed catalog
+// Unlike the exoplanet fetcher, this data is a curated, fixed catalog
 // rather than a live query: the 110 Messier objects are constants. The values
 // below (object type/subtype, distance in light-years, constellation, apparent
 // visual magnitude) are transcribed from the accepted modern consensus —

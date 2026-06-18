@@ -90,6 +90,10 @@ export function describePlanet(p) {
 
   if (period) sentences.push(`It completes an orbit ${period}.`);
 
+  if (p.equilibriumTempK != null) {
+    sentences.push(`Its equilibrium temperature is about ${round(p.equilibriumTempK, 0)} K.`);
+  }
+
   // Discovery provenance.
   if (p.discoveryYear && p.discoveryMethod) {
     sentences.push(`Discovered in ${p.discoveryYear} via the ${p.discoveryMethod} method.`);
@@ -104,6 +108,7 @@ export function describePlanet(p) {
   if (p.host) stats.push(`Host: ${p.host}`);
   if (p.radiusEarth != null) stats.push(`${round(p.radiusEarth, 2)} R⊕`);
   if (p.massEarth != null) stats.push(`${round(p.massEarth, 1)} M⊕`);
+  if (p.equilibriumTempK != null) stats.push(`${round(p.equilibriumTempK, 0)} K`);
   if (p.orbitalPeriodDays != null) stats.push(`${round(p.orbitalPeriodDays, 1)} d period`);
   if (p.discoveryYear != null) stats.push(`${p.discoveryYear}`);
 

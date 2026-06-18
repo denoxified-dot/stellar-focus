@@ -2,7 +2,6 @@ import { StellarScene } from './scene.js';
 import { StudyTimer } from './timer.js';
 import { loadExoplanets } from './exoplanets.js';
 import { loadMessier } from './messier.js';
-import { loadApod, pickRandomImage } from './apod.js';
 import { chooseDiscovery, buildDiscoveryVisual, describeDiscovery } from './discovery.js';
 
 // Entry point: wires the DOM controls to the timer and the Three.js scene.
@@ -10,6 +9,7 @@ import { chooseDiscovery, buildDiscoveryVisual, describeDiscovery } from './disc
 const canvas = document.getElementById('scene');
 const scene = new StellarScene(canvas);
 
+const ui = document.getElementById('ui');
 const startBtn = document.getElementById('start');
 const stopBtn = document.getElementById('stop');
 const display = document.getElementById('timer');
@@ -20,54 +20,69 @@ const discoveryLabel = document.getElementById('discovery-label');
 const discoveryName = document.getElementById('discovery-name');
 const discoveryStats = document.getElementById('discovery-stats');
 const discoveryDesc = document.getElementById('discovery-desc');
+const discoveryNote = document.getElementById('discovery-note');
 
-const apodFigure = document.getElementById('apod');
-const apodImg = document.getElementById('apod-img');
-const apodTitle = document.getElementById('apod-title');
-const apodCredit = document.getElementById('apod-credit');
-const apodExplanation = document.getElementById('apod-explanation');
+const objectFigure = document.getElementById('object-image');
+const objectImg = document.getElementById('object-img');
+const objectCredit = document.getElementById('object-credit');
+const objectExplanation = document.getElementById('object-explanation');
 
 // Warm the data caches up front so the reveal is instant on Stop.
 loadExoplanets();
 loadMessier();
-loadApod();
 
 function hideDiscovery() {
   discoveryEl.hidden = true;
-  apodFigure.hidden = true;
-  apodImg.removeAttribute('src');
+  objectFigure.hidden = true;
+  objectImg.removeAttribute('src');
 }
 
-/** Attach a real NASA APOD photo + its caption, or skip it gracefully. */
-async function showApod() {
-  apodFigure.hidden = true;
-  const images = await loadApod();
-  if (!images) return; // no apod.json yet — discovery shows without an image.
+/**
+ * Show a real photograph of the discovered object — but ONLY when one that
+ * genuinely depicts it exists. Messier objects carry a verified `image` (added
+ * by `npm run fetch-messier-images`); exoplanets never do, since no real photos
+ * of them exist. With no genuine image the figure stays hidden and the card
+ * shows the accurate data alone.
+ */
+function showObjectImage(choice) {
+  objectFigure.hidden = true;
+  const image = choice.object.image;
+  if (!image || !image.url) return; // no verified image — never pair an unrelated one.
 
-  const img = pickRandomImage(images);
-  apodImg.src = img.url;
-  apodImg.alt = img.title || 'NASA Astronomy Picture of the Day';
-  apodTitle.textContent = img.title || 'NASA Astronomy Picture of the Day';
-  apodCredit.textContent = [
-    'NASA APOD',
-    img.date,
-    img.copyright ? `© ${img.copyright}` : null,
-  ]
-    .filter(Boolean)
-    .join(' · ');
-  apodExplanation.textContent = img.explanation || '';
-  // Reveal the figure only once the image actually loads; hide on error.
-  apodImg.onload = () => {
-    apodFigure.hidden = false;
+  objectImg.src = image.url;
+  objectImg.alt = `NASA photograph of ${choice.object.name || `Messier ${choice.object.messier}`}`;
+  objectCredit.textContent = image.credit || 'NASA Image and Video Library';
+  objectExplanation.textContent = image.description || '';
+  // Reveal the figure only once the image actually loads; hide on error so a
+  // broken link never leaves an empty frame beside the data.
+  objectImg.onload = () => {
+    objectFigure.hidden = false;
   };
-  apodImg.onerror = () => {
-    apodFigure.hidden = true;
+  objectImg.onerror = () => {
+    objectFigure.hidden = true;
   };
+}
+
+/** Reveal the data once the supernova animation has finished. */
+function presentDiscovery(choice) {
+  const info = describeDiscovery(choice);
+  discoveryLabel.textContent = info.label;
+  discoveryName.textContent = info.name;
+  discoveryStats.textContent = info.headline;
+  discoveryDesc.textContent = info.description;
+  discoveryNote.textContent = info.note || '';
+  discoveryNote.hidden = !info.note;
+  discoveryEl.hidden = false;
+  showObjectImage(choice); // a real photo of THIS object, or nothing at all
+
+  ui.classList.remove('revealing'); // bring the timer/controls back
+  hint.textContent = 'Session complete';
+  startBtn.disabled = false;
 }
 
 /**
  * Pick a real object to discover — its type and size scaled by how long the
- * session lasted — render it as the scene's focal point, and describe it.
+ * session lasted — play the supernova reveal, then present its data.
  * Falls back gracefully if no data files are present.
  */
 async function revealDiscovery(intensity) {
@@ -76,23 +91,16 @@ async function revealDiscovery(intensity) {
   const choice = chooseDiscovery(intensity, { messier, exoplanets });
   if (!choice) {
     // No data files yet — keep working, just nudge toward fetching them.
+    ui.classList.remove('revealing');
     hint.textContent =
       'Session complete · run "npm run fetch-data" and "npm run fetch-messier" to discover real objects';
+    startBtn.disabled = false;
     return;
   }
 
-  // Render the discovered object and ease the camera toward it.
-  scene.spawnDiscovery(buildDiscoveryVisual(choice, intensity));
-
-  const info = describeDiscovery(choice);
-  discoveryLabel.textContent = info.label;
-  discoveryName.textContent = info.name;
-  discoveryStats.textContent = info.headline;
-  discoveryDesc.textContent = info.description;
-  discoveryEl.hidden = false;
-  hint.textContent = 'Session complete';
-
-  showApod(); // real NASA imagery alongside the discovery (if available)
+  // Detonate the supernova at the discovery location; once it fades and the
+  // object has formed, present the timer/controls and the info card.
+  scene.playReveal(buildDiscoveryVisual(choice, intensity), () => presentDiscovery(choice));
 }
 
 const timer = new StudyTimer({
@@ -101,12 +109,16 @@ const timer = new StudyTimer({
     startBtn.disabled = true;
     stopBtn.disabled = false;
     hint.textContent = 'Focus session in progress…';
+    ui.classList.remove('revealing');
     hideDiscovery();
-    scene.reset(); // clear any object from a previous session
+    scene.reset(); // clear any object (or in-flight reveal) from a previous session
   },
   onStop(elapsedMs) {
-    startBtn.disabled = false;
+    // Keep both buttons disabled and fade the timer/controls out so the
+    // supernova has the stage; they return when the reveal completes.
+    startBtn.disabled = true;
     stopBtn.disabled = true;
+    ui.classList.add('revealing');
     // The longer you focused, the grander the object you discover: a short
     // session finds an exoplanet or small cluster; a long one finds a big
     // nebula or galaxy. ~30 minutes reaches full grandeur.
