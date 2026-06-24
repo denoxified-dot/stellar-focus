@@ -24,7 +24,7 @@ import { makeRng, hashString, clamp, lerp } from './util.js';
 // --- classification & temperature ------------------------------------------
 
 /** Bucket a planet into a visual class from radius, density and mass. */
-function classify({ radiusEarth, densityCgs, massEarth }) {
+export function classify({ radiusEarth, densityCgs, massEarth }) {
   const r = radiusEarth ?? 1;
   if (r >= 6) return 'gasGiant';
   if (r >= 3.8) return 'iceGiant';
@@ -51,20 +51,43 @@ function warmth({ equilibriumTempK, orbitalPeriodDays }) {
 const C = (hex) => new THREE.Color(hex);
 const mix = (a, b, t) => a.clone().lerp(b, clamp(t, 0, 1));
 
-/** Temperature → a dark/light colour pair spanning cold → hot. */
-function tempPair(w) {
-  const stops = [
-    { w: 0.0, d: C(0x6f9fc8), l: C(0xcfe6f5) }, // cold  → pale blue
-    { w: 0.4, d: C(0x2f7f8c), l: C(0x9fd6dd) }, // temperate → blue/teal
-    { w: 0.7, d: C(0x9c5a2a), l: C(0xe3bd8a) }, // warm  → tan/orange
-    { w: 1.0, d: C(0x5e1d12), l: C(0xd07a4a) }, // hot   → red/brown
-  ];
+/** Blend a list of {w, ...colours} stops at warmth w; returns the named colours. */
+function lerpStops(stops, w, keys) {
   let a = stops[0], b = stops[stops.length - 1];
   for (let i = 0; i < stops.length - 1; i++) {
     if (w >= stops[i].w && w <= stops[i + 1].w) { a = stops[i]; b = stops[i + 1]; break; }
   }
   const t = (w - a.w) / Math.max(b.w - a.w, 1e-6);
-  return { d: mix(a.d, b.d, t), l: mix(a.l, b.l, t) };
+  const out = {};
+  for (const k of keys) out[k] = mix(a[k], b[k], t);
+  return out;
+}
+
+/** Gas-giant palette: warm creams/ochres → red-brown when hot, plus a storm. */
+function gasPalette(w) {
+  const { belt, zone } = lerpStops([
+    { w: 0.0, belt: C(0xb9905e), zone: C(0xe9dcc0) }, // cool: tan / pale gold
+    { w: 0.5, belt: C(0x8c5a33), zone: C(0xe0c79a) }, // warm: brown / cream-ochre
+    { w: 1.0, belt: C(0x5e2412), zone: C(0xd98a5a) }, // hot:  red-brown / ember
+  ], w, ['belt', 'zone']);
+  return { belt, zone, storm: mix(C(0xd24a2a), C(0x7a2410), w) };
+}
+
+/** Mini-Neptune palette: muted, hazy, low-saturation (steel/teal → taupe). */
+function miniNeptunePalette(w) {
+  const { a, b } = lerpStops([
+    { w: 0.0, a: C(0x7f97ad), b: C(0xbecedb) }, // hazy steel blue
+    { w: 0.5, a: C(0x789a9a), b: C(0xc1d2cf) }, // hazy pale teal
+    { w: 1.0, a: C(0xa98a7a), b: C(0xd8c3b2) }, // hazy warm taupe
+  ], w, ['a', 'b']);
+  return { a, b, haze: mix(b, C(0xffffff), 0.45) };
+}
+
+/** Ice-giant palette: deep, saturated azure → teal, with a dark storm spot. */
+function iceGiantPalette(w) {
+  const a = mix(C(0x1f4f8c), C(0x2f8f96), w); // deep blue → teal
+  const b = mix(C(0x6fb0e6), C(0x8fdada), w); // bright zone
+  return { a, b, spot: a.clone().multiplyScalar(0.5), haze: mix(b, C(0xffffff), 0.35) };
 }
 
 /** Rocky-world palette: oceans/land/caps that shift strongly with temperature. */
@@ -116,6 +139,8 @@ uniform float uSeaLevel;
 uniform float uCapStart;
 uniform float uClouds;
 uniform vec4 uStorm;        // (centerY, centerLon, radiusY, radiusLon) — radiusY<=0 disables
+uniform vec3 uHazeColor;    // atmospheric limb glow (zero for airless/rocky worlds)
+uniform float uHazeStrength;
 
 float ph_hash(vec3 p) {
   p = fract(p * 0.3183099 + 0.1);
@@ -146,12 +171,14 @@ float ph_gLava;
 vec3 ph_surface(vec3 dir) {
   vec3 p = dir * 2.0 + uSeed;
 
-  if (uType == 0 || uType == 1) {
-    // Gas giant / mini-Neptune: turbulent, swirling latitudinal belts.
+  if (uType == 0) {
+    // Gas giant: many sharp, turbulent latitudinal belts sheared by storms,
+    // plus a prominent oval storm. High contrast — reads as a striped giant.
     float turb = ph_fbm(p * 1.4) * 2.0 - 1.0;
     float swirl = ph_fbm(p * 0.7 + vec3(5.3)) * 2.0 - 1.0;
     float fine = ph_fbm(p * 7.0) * 2.0 - 1.0;
     float band = sin(dir.y * uBands * 3.14159 + turb * 1.8 + swirl * 2.0);
+    band = sign(band) * pow(abs(band), 0.6); // crisp zone/belt boundaries
     vec3 c = mix(uColA, uColB, 0.5 + 0.5 * band);
     c += fine * uContrast;
     if (uStorm.z > 0.0) {
@@ -165,11 +192,29 @@ vec3 ph_surface(vec3 dir) {
       }
     }
     return c;
+  } else if (uType == 1) {
+    // Mini-Neptune: a thick, hazy atmosphere — soft and nearly featureless,
+    // only the faintest broad bands showing through. Its character comes from
+    // the limb glow added below, not surface detail.
+    float mottle = ph_fbm(p * 2.2) - 0.5;
+    float micro = ph_fbm(p * 6.0) - 0.5;
+    float band = sin(dir.y * uBands * 3.14159);
+    float k = clamp(0.5 + band * 0.16 + mottle * 0.45 + micro * 0.1, 0.0, 1.0);
+    return mix(uColA, uColB, k);
   } else if (uType == 2) {
-    // Ice giant: smooth, pale, faint bands and gentle mottling.
+    // Ice giant: smooth deep blue with crisp faint bands and, often, a single
+    // discrete dark storm spot (à la Neptune's Great Dark Spot).
     float mottle = ph_fbm(p * 3.0) - 0.5;
-    float band = 0.5 + 0.5 * sin(dir.y * 7.0);
-    return mix(uColA, uColB, clamp(band * 0.45 + mottle * 0.6 + 0.45, 0.0, 1.0));
+    float band = 0.5 + 0.5 * sin(dir.y * uBands);
+    vec3 c = mix(uColA, uColB, clamp(band * 0.5 + mottle * 0.55 + 0.45, 0.0, 1.0));
+    if (uStorm.z > 0.0) {
+      float dlat = (dir.y - uStorm.x) / uStorm.z;
+      float lon = atan(dir.z, dir.x);
+      float dl = atan(sin(lon - uStorm.y), cos(lon - uStorm.y)) / uStorm.w;
+      float rr = dlat * dlat + dl * dl;
+      if (rr < 1.0) c = mix(c, uColC, (1.0 - rr) * 0.85);
+    }
+    return c;
   } else if (uType == 3) {
     // Rocky world: continents, oceans, polar caps and (temperate) clouds.
     float elev = ph_fbm(p * 1.1) + (ph_fbm(p * 3.6) - 0.5) * 0.2;
@@ -218,6 +263,11 @@ function patchMaterial(material, uniforms) {
         `
         #include <emissivemap_fragment>
         totalEmissiveRadiance += uLavaColor * ph_gLava;
+        // Atmospheric haze: a view-dependent Fresnel rim that glows at the limb,
+        // reading as a thick atmosphere. 'normal' and vViewPosition are set by
+        // the standard normal_fragment_begin chunk just above this point.
+        float ph_rim = pow(1.0 - clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0), 3.0);
+        totalEmissiveRadiance += uHazeColor * ph_rim * uHazeStrength;
         `
       );
   };
@@ -261,33 +311,54 @@ export function createPlanet({
     uCapStart: { value: 0.8 },
     uClouds: { value: 0 },
     uStorm: { value: noStorm.clone() },
+    uHazeColor: { value: black.clone() },
+    uHazeStrength: { value: 0 },
   };
   let roughness = 0.9, metalness = 0;
 
-  if (type === 'gasGiant' || type === 'miniNeptune') {
-    const tc = tempPair(w);
-    const hazy = type === 'miniNeptune';
-    u.uType.value = hazy ? 1 : 0;
-    u.uColA.value = hazy ? mix(tc.d, tc.l, 0.5) : tc.d;
-    u.uColB.value = hazy ? mix(tc.l, tc.d, 0.2) : tc.l;
-    u.uColC.value = tc.d.clone().multiplyScalar(0.6);
-    u.uBands.value = hazy ? 5 : 8 + Math.floor(rng() * 6);
-    u.uContrast.value = hazy ? 0.02 : 0.06;
-    if (!hazy) {
+  if (type === 'gasGiant') {
+    const gp = gasPalette(w);
+    u.uType.value = 0;
+    u.uColA.value = gp.belt;
+    u.uColB.value = gp.zone;
+    u.uColC.value = gp.storm;
+    u.uBands.value = 9 + Math.floor(rng() * 5); // 9..13 sharp belts
+    u.uContrast.value = 0.06;
+    u.uStorm.value = new THREE.Vector4(
+      (rng() - 0.5) * 0.9, // centre latitude in dir.y units
+      rng() * Math.PI * 2, // centre longitude (radians)
+      0.1 + rng() * 0.06, // latitude radius
+      0.22 + rng() * 0.14 // longitude radius (radians)
+    );
+    roughness = 0.95;
+  } else if (type === 'miniNeptune') {
+    const mp = miniNeptunePalette(w);
+    u.uType.value = 1;
+    u.uColA.value = mp.a;
+    u.uColB.value = mp.b;
+    u.uBands.value = 2 + Math.floor(rng() * 2); // 2..3 broad, soft bands
+    u.uContrast.value = 0.02;
+    u.uHazeColor.value = mp.haze; // thick atmosphere glows at the limb
+    u.uHazeStrength.value = 0.6;
+    roughness = 0.8;
+  } else if (type === 'iceGiant') {
+    const ip = iceGiantPalette(w);
+    u.uType.value = 2;
+    u.uColA.value = ip.a;
+    u.uColB.value = ip.b;
+    u.uColC.value = ip.spot;
+    u.uBands.value = 5 + Math.floor(rng() * 3); // 5..7 faint bands
+    u.uHazeColor.value = ip.haze;
+    u.uHazeStrength.value = 0.3; // subtler haze than a mini-Neptune
+    if (rng() < 0.6) {
       u.uStorm.value = new THREE.Vector4(
-        (rng() - 0.5) * 0.9, // centre latitude in dir.y units
-        rng() * Math.PI * 2, // centre longitude (radians)
-        0.1 + rng() * 0.06, // latitude radius
-        0.22 + rng() * 0.14 // longitude radius (radians)
+        (rng() - 0.5) * 0.8, // a single discrete dark spot
+        rng() * Math.PI * 2,
+        0.08 + rng() * 0.05,
+        0.16 + rng() * 0.1
       );
     }
-    roughness = 0.95;
-  } else if (type === 'iceGiant') {
-    const base = mix(C(0x4f9aa3), C(0x6fb0d6), 1 - w); // colder → bluer
-    u.uType.value = 2;
-    u.uColA.value = base.clone().multiplyScalar(0.82);
-    u.uColB.value = mix(base, C(0xe2f1f2), 0.6);
-    roughness = 0.6;
+    roughness = 0.5; // glassier than the matte gas giant
   } else if (type === 'rocky') {
     const p = terrestrialPalette(w);
     u.uType.value = 3;

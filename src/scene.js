@@ -74,7 +74,12 @@ export class StellarScene {
       new THREE.Vector2(window.innerWidth, window.innerHeight),
       0.9, // strength
       0.5, // radius
-      0.15 // threshold — only the brighter particles bloom
+      // Threshold: only genuinely bright sources bloom. Kept high so a lit
+      // planet's surface (a solid, mid-bright hemisphere) is NOT bloomed into a
+      // white wash that hides its colour — while the far brighter additive
+      // particle clouds (starfield, supernova, discovered galaxies/nebulae) and
+      // the emissive atmosphere/lava still glow as before.
+      0.6
     );
     this.composer.addPass(this.bloomPass);
     this.composer.setPixelRatio(Math.min(window.devicePixelRatio, 2));

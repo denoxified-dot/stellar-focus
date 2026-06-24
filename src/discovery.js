@@ -1,9 +1,9 @@
 import { createGalaxy } from './galaxy.js';
 import { createCluster } from './cluster.js';
 import { createNebula } from './nebula.js';
-import { createPlanet } from './planet.js';
+import { createPlanet, classify } from './planet.js';
 import { describePlanet } from './exoplanets.js';
-import { hashString, clamp } from './util.js';
+import { hashString, clamp, lerp } from './util.js';
 
 // The discovery system: given how long the user studied (intensity 0..1), pick
 // a REAL object to discover, build its visual, and describe it.
@@ -58,6 +58,34 @@ function sizeProxy(kind, o) {
   return clamp(0.55 * base + 0.45 * brightness, 0, 1);
 }
 
+// Target share per visual type for a planet discovery, blended by session length
+// so every type keeps a real floor (short sessions still surface giants now and
+// then) while longer sessions lean grander. Without this, size-matching pinned
+// short sessions to small rocky/mini-Neptune worlds and giants never appeared.
+const PLANET_TYPE_ORDER = ['rocky', 'miniNeptune', 'gasGiant', 'iceGiant'];
+const PLANET_MIX_SHORT = { rocky: 0.35, miniNeptune: 0.3, gasGiant: 0.2, iceGiant: 0.15 };
+const PLANET_MIX_LONG = { rocky: 0.15, miniNeptune: 0.25, gasGiant: 0.4, iceGiant: 0.2 };
+
+/**
+ * Pick an exoplanet with deliberate type variety: choose a visual type first
+ * (so rocky worlds don't dominate), then a planet within it — favouring ones
+ * with a measured temperature so the rendered colour stays data-driven.
+ * @returns {{ object, size }}
+ */
+function pickPlanet(pool, t) {
+  const byType = { rocky: [], miniNeptune: [], gasGiant: [], iceGiant: [] };
+  for (const o of pool) byType[classify(o)].push(o);
+
+  const types = PLANET_TYPE_ORDER.filter((k) => byType[k].length > 0);
+  const typeWeights = types.map((k) => lerp(PLANET_MIX_SHORT[k], PLANET_MIX_LONG[k], t));
+  const type = weightedPick(types, typeWeights);
+
+  const group = byType[type];
+  const objWeights = group.map((o) => (o.equilibriumTempK != null ? 1 : 0.3));
+  const object = weightedPick(group, objWeights);
+  return { object, size: sizeProxy('planet', object) };
+}
+
 /**
  * Choose a real object to discover for a session of the given intensity.
  * @returns {{ kind, object, size } | null} null if no data is available at all.
@@ -78,7 +106,11 @@ export function chooseDiscovery(intensity, { messier, exoplanets } = {}) {
   const catWeights = categories.map((c) => gaussian(c.center - t, 0.24));
   const cat = weightedPick(categories, catWeights);
 
-  // Within that category, favour objects whose own size matches the session.
+  // Planets pick a type first (for variety); deep-sky objects favour those
+  // whose own size matches the session.
+  if (cat.kind === 'planet') {
+    return { kind: 'planet', ...pickPlanet(cat.pool, t) };
+  }
   const sized = cat.pool.map((o) => ({ o, size: sizeProxy(cat.kind, o) }));
   const objWeights = sized.map((s) => gaussian(s.size - t, 0.3) + 0.02);
   const picked = weightedPick(sized, objWeights);
